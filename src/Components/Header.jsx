@@ -1,11 +1,21 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
-import  {  useState } from 'react'
+import  {     useState } from 'react'
 import { Link, NavLink } from 'react-router-dom';
+// import { AuthContext } from './Authprobider';
 
 const Headers = () => {
-    
-const user = false
+  // const {user,setUser} = useContext(AuthContext)
+const localstrageusers  = localStorage.getItem('user')
+
+
+  const user = JSON.parse(localstrageusers )
+  //  useEffect(()=>{
+  //   setUser(userss)
+  //  },[setUser,userss])
+
+
+
     let Links =[
       {name:"Home",link:"/"},
       {name:"All-Blog",link:"/allblog"},
@@ -16,7 +26,7 @@ const user = false
    
     let [open,setOpen]=useState(false);
 
-    
+    // console.log(user)
   return (
     <div className=' w-full '>
       <div className='md:flex bg-white max-w-[1000px] mx-auto shadow-gray-700 shadow-sm rounded-lg text-black items-center justify-between  py-2 md:px-10 px-7 mt-3'>
@@ -45,7 +55,10 @@ const user = false
              Login
             </button></Link>:
             <button 
-            
+            onClick={()=>{
+              localStorage.removeItem('user')
+              window.location.reload();
+            }}
             className='bg-red-500 hover:bg-red-600 text-white  md:ml-10 px-4 rounded-lg shadow-lg'>
              Logout
             </button>

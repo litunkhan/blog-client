@@ -14,6 +14,7 @@ import Register from './pages/Register.jsx';
 import Blogsee from './pages/Blogsee.jsx';
 import Home from './pages/Home.jsx';
 import PostBlog from './pages/Dashboard/PostBlog.jsx';
+import Authprobider from './Components/Authprobider.jsx';
 
 
 const router = createBrowserRouter([
@@ -50,6 +51,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <Authprobider>
        <RouterProvider router={router} />
+       </Authprobider>
   </React.StrictMode>,
 )

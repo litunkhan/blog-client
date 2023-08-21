@@ -2,8 +2,11 @@
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
+// import { AuthContext } from '../Components/Authprobider';
+// import { useContext } from 'react';
 
 const Login = () => {
+    // const {setUser} = useContext(AuthContext)
     const navigate = useNavigate('')
     const handleLogin = (e)=>{
         e.preventDefault()
@@ -14,8 +17,10 @@ const Login = () => {
       const userlogin =  {email,password}
         axios.post('http://localhost:5000/login',userlogin)
         .then(res=>{
-            if(res.data.insertedId && res.data.user ){
-
+            if( res.data.user ){
+                // setUser(res.data.user)
+                localStorage.setItem('user', JSON.stringify(res.data.user));
+                
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -25,6 +30,7 @@ const Login = () => {
                   })
                   form.reset()
                   navigate('/')
+                  window.location.reload();
                   
             }
         })
